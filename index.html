@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>WU-Link Web Demo</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
+		
+		<style>
+			body {
+				background-color: #efeff4;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+		</style>
+	
+    </head>
+    <body ontouchstart>
+		<div id="container" class="container">
+		
+			<div class="weui-cells weui-cells_form">
+			
+				<div class="weui-cell weui-cell_vcode">
+					<div class="weui-cell__hd">
+						<label class="weui-label">MAC</label>
+					</div>
+					<div class="weui-cell__bd">
+						<input class="weui-input" type="tel" id="inputDefault" placeholder="请输入WU-Link MAC地址">
+					</div>
+				</div>
+			</div>
+			<!-- 使用 -->
+			
+			<a href="javascript:;" id="myBtn1" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">1</a>
+			<a href="javascript:;" id="myBtn2" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">2</a>
+			<a href="javascript:;" id="myBtn3" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">3</a>
+			<a href="javascript:;" id="myBtn4" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">4</a>
+			<a href="javascript:;" id="myBtn5" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">5</a>
+			<a href="javascript:;" id="myBtn6" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">6</a>
+			<a href="javascript:;" id="myBtn7" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">7</a>
+			<a href="javascript:;" id="myBtn8" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">8</a>
+			<a href="javascript:;" id="myBtn9" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">9</a>
+			<a href="javascript:;" id="myBtn0" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">0</a>
+			
+			<div class="weui-cell weui-cell_vcode">
+				<div class="weui-cell__hd">
+					<label class="weui-label">文本</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input class="weui-input" type="tel" placeholder="Data" id="inputdata">
+				</div>
+				<div class="weui-cell__ft">
+					<a href="javascript:;" id="myBtn_text" onclick='send(this)' class="weui-vcode-btn">发送</a>
+				</div>
+			</div>
+		
+		</div>
+        
+    </body>
+	
+	<script>
+	function send(self)
+	{
+		var MAC=document.getElementById("inputDefault");
+		var userdata=document.getElementById("inputdata");
+		var uservale = userdata.value;
+		var xmlhttp;
+		var target = MAC.value;
+		//MAC.value = target;
+		var data=document.getElementById(self.id).innerHTML;
+	    //var getStatusBack;	
+
+		var url = "http://haohaodada.com/iot/send_mqtt.php";  
+
+		xmlhttp=new XMLHttpRequest();
+
+		xmlhttp.open("POST",url,true);
+		//xmlhttp.onreadystatechange = getStatusBack;  
+		xmlhttp.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded"); 
+        
+        if (data == "发送")
+        {
+	    	xmlhttp.send("target="+target+"&message="+userdata.value); 
+        }
+        else
+        {
+            xmlhttp.send("target="+target+"&message="+data); 
+        }
+		//xmlhttp.send("target=EC:FA:BC:0D:F3:DD&message=left");  
+	}	
+	</script>  
+</html>

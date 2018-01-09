@@ -109,25 +109,34 @@
             </div>
             
             <div class="weui-cells__title">MA</div>
-            <div class="weui-slider-box">
-                <div class="weui-slider">
-                    <div class="weui-slider__inner">
-                        <div style="width: 50%;" class="weui-slider__track"></div>
-                        <div style="left: 50%;" class="weui-slider__handler"></div>
-                    </div>
-                </div>
-                <div class="weui-slider-box__value">50</div>
-            </div>
+            <div class="page__bd page__bd_spacing">
+				<br>
+					<div class="weui-slider-box">
+						<div class="weui-slider">
+							<div id="sliderInner" class="weui-slider__inner">
+								<div id="sliderTrack" style="width: 50%;" class="weui-slider__track"></div>
+								<div id="sliderHandler" style="left: 50%;" class="weui-slider__handler"></div>
+							</div>
+						</div>
+						<div id="sliderValue" class="weui-slider-box__value">50</div>
+					</div>	
+			</div>
+            
             <div class="weui-cells__title">MB</div>
-            <div class="weui-slider-box">
-                <div class="weui-slider">
-                    <div class="weui-slider__inner">
-                        <div style="width: 50%;" class="weui-slider__track"></div>
-                        <div style="left: 50%;" class="weui-slider__handler"></div>
-                    </div>
-                </div>
-                <div class="weui-slider-box__value">50</div>
-            </div>
+            <div class="page__bd page__bd_spacing">
+				<br>
+					<div class="weui-slider-box">
+						<div class="weui-slider">
+							<div id="sliderInner2" class="weui-slider__inner">
+								<div id="sliderTrack2" style="width: 50%;" class="weui-slider__track"></div>
+								<div id="sliderHandler2" style="left: 50%;" class="weui-slider__handler"></div>
+							</div>
+						</div>
+						<div id="sliderValue2" class="weui-slider-box__value">50</div>
+					</div>	
+			</div>
+				
+			<br>
 			
 	    <div class="weui-flex">
                 <div class="weui-flex__item">
@@ -164,6 +173,7 @@
                     <a href="javascript:;" id="myBtn0" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">0</a>
                 </div>
             </div>
+			<br>
 			<div class="weui-cell weui-cell_vcode">
 				<div class="weui-cell__hd">
 					<label class="weui-label">文本</label>
@@ -180,7 +190,64 @@
         
     </body>
 	
+	<script src="https://weui.io/zepto.min.js"></script>
 	<script>
+	$(function(){
+					var $sliderTrack = $('#sliderTrack'),
+						$sliderHandler = $('#sliderHandler'),
+						$sliderValue = $('#sliderValue');
+
+					var totalLen = $('#sliderInner').width(),
+						startLeft = 0,
+						startX = 0;
+
+					$sliderHandler
+						.on('touchstart', function (e) {
+							startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100;
+							startX = e.changedTouches[0].clientX;
+						})
+						.on('touchmove', function(e){
+							var dist = startLeft + e.changedTouches[0].clientX - startX,
+								percent;
+							dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist;
+							percent =  parseInt(dist / totalLen * 100);
+							$sliderTrack.css('width', percent + '%');
+							$sliderHandler.css('left', percent + '%');
+							$sliderValue.text(percent);
+
+							e.preventDefault();
+						})
+					;
+				});
+                
+    $(function(){
+					var $sliderTrack = $('#sliderTrack2'),
+						$sliderHandler = $('#sliderHandler2'),
+						$sliderValue = $('#sliderValue2');
+
+					var totalLen = $('#sliderInner2').width(),
+						startLeft = 0,
+						startX = 0;
+
+					$sliderHandler
+						.on('touchstart', function (e) {
+							startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100;
+							startX = e.changedTouches[0].clientX;
+						})
+						.on('touchmove', function(e){
+							var dist = startLeft + e.changedTouches[0].clientX - startX,
+								percent;
+							dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist;
+							percent =  parseInt(dist / totalLen * 100);
+							$sliderTrack.css('width', percent + '%');
+							$sliderHandler.css('left', percent + '%');
+							$sliderValue.text(percent);
+
+							e.preventDefault();
+						})
+					;
+				});	
+		
 	function send(self)
 	{
 		var MAC=document.getElementById("inputDefault");

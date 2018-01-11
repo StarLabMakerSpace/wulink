@@ -8,40 +8,21 @@
         <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
 		
 		<style>
-			<!-- body { -->
-				<!-- background-color: #efeff4; -->
-				<!-- -webkit-tap-highlight-color: transparent; -->
-				<!-- -webkit-touch-callout: none; -->
-				<!-- -webkit-user-select: none; -->
-				<!-- -khtml-user-select: none; -->
-				<!-- -moz-user-select: none; -->
-				<!-- -ms-user-select: none; -->
-				<!-- user-select: none; -->
-			<!-- } -->
+			body {
+				background-color: #efeff4;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
 		</style>
 	
     </head>
     <body ontouchstart>
 		<div id="container" class="container">
-		
-            <!-- <div class="weui-tab"> -->
-                <!-- <div class="weui-navbar"> -->
-                    <!-- <div class="weui-navbar__item weui-bar__item_on"> -->
-                        <!-- 选项一 -->
-                    <!-- </div> -->
-                    <!-- <div class="weui-navbar__item"> -->
-                        <!-- 选项二 -->
-                    <!-- </div> -->
-                    <!-- <div class="weui-navbar__item"> -->
-                        <!-- 选项三 -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="weui-tab__panel"> -->
-                    <!-- <div>Page 1</div> -->
-                    <!-- <div style="display:none">Page 2</div> -->
-                    <!-- <div style="display:none">Page 3</div> -->
-                <!-- </div> -->
-            <!-- </div> -->
             <div class="weui-cells weui-cells_form">
 			
 				<div class="weui-cell weui-cell_vcode">
@@ -54,40 +35,42 @@
 				</div>
 			</div>
             
-            <div class="weui-cells__title">输入</div>
+            <div class="weui-cells__title">传感器</div>
             <div class="weui-cells">
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABeUlEQVRYR+2X4S1FQRCFv1cBKkAF6IAO6IAKUAEqQAV0QAd0gApQASogX7KTTDZ5z+51ExF3k/fj3Zs758yZmd2zM4atZeAc2C2f3wLHwHtvuFnvB4Dgz8AHcF2+3weWgPVeEkMIXAACriUwSb0AvjvtSWoIgfsCsF0BzXu+kM9EYFLgzyvgOLrcD35lCjLoRGBSYFJgUuB/KKDzeQBeAQ1JvROuAls9tqznMBL8rvg+zwCNaCagQfVM0C/utJLoIRBe0MwfyyFU132zkJLIUYs3bCVg9m/AWTKdErkqIAdJDU3pCbDSokIrASUXLIKaqb2Ql5ZcZxxk90qZRjGlkVUQjv85eFbns1JrLolWBWoCNtxNFTVnLAFvSvbNKAqE5BnE4Icl+mVquiDnOEaz/lgBA9jxXr8WjVi9T3wnAK0lMFCMmHOuEjZcXl7VLIvNmEd1lBJEkCBhjd2IgoTgSm9CzeAG7VEgSCizY+lvozx8KrugG1DXFf0LbrV2IQjVARIAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                    <div class="weui-cell__bd">
-                        <p>温度</p>
-                    </div>
-                    <div class="weui-cell__ft">50°</div>
-                </div>
-		<div class="weui-cell">
                     <div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAvklEQVQ4Ec3BMU7CAAAF0Cd7dWLA2wgrGD2OLtqFs3AAXZt0J5Ej9AAkmnQlfKcmpCnUDd9zBYXSTqu1UyqMWGhEREQ0Fi5YOIra0szMUi2O5s4oNGLtRmdiLRqFQaWoTZyaqEVp0E4s9a3El0GtmOm7F61BP+JW3534NmgrHvTNxdagV/Gh71O8GDS1F29OvYu9qTOeHcRGZyMOnlzwKKITsTIiohMxKiIiImJUJSIiovIvRERE/EklIqJyBb+vS2Au0hsIbgAAAABJRU5ErkJggg==" alt="" style="width:20px;margin-right:5px;display:block"></div>
                     <div class="weui-cell__bd">
                         <p>亮度</p>
                     </div>
-                    <div class="weui-cell__ft">100Lux</div>
+                    <div class="weui-cell__ft" id="lignt" >100Lux</div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABeUlEQVRYR+2X4S1FQRCFv1cBKkAF6IAO6IAKUAEqQAV0QAd0gApQASogX7KTTDZ5z+51ExF3k/fj3Zs758yZmd2zM4atZeAc2C2f3wLHwHtvuFnvB4Dgz8AHcF2+3weWgPVeEkMIXAACriUwSb0AvjvtSWoIgfsCsF0BzXu+kM9EYFLgzyvgOLrcD35lCjLoRGBSYFJgUuB/KKDzeQBeAQ1JvROuAls9tqznMBL8rvg+zwCNaCagQfVM0C/utJLoIRBe0MwfyyFU132zkJLIUYs3bCVg9m/AWTKdErkqIAdJDU3pCbDSokIrASUXLIKaqb2Ql5ZcZxxk90qZRjGlkVUQjv85eFbns1JrLolWBWoCNtxNFTVnLAFvSvbNKAqE5BnE4Icl+mVquiDnOEaz/lgBA9jxXr8WjVi9T3wnAK0lMFCMmHOuEjZcXl7VLIvNmEd1lBJEkCBhjd2IgoTgSm9CzeAG7VEgSCizY+lvozx8KrugG1DXFf0LbrV2IQjVARIAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p >温度</p>
+                    </div>
+                    <div class="weui-cell__ft" id="temp" >50°</div>
                 </div>
             </div>
         
             
             
-            <div class="weui-cells__title">输出</div>
+            <div class="weui-cells__title">扩展端口</div>
+			<!-- <input hidden="hidden" id="btnA0" name="A0" type="radio" value="off" checked="checked" /> -->
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell weui-cell_switch">
                     <div class="weui-cell__bd">A0</div>
                     <div class="weui-cell__ft">
-                        <input class="weui-switch" type="checkbox"/>
+                        <input class="weui-switch" type="checkbox" id="A0" value="Off" onclick='sendState(this)'/>
                     </div>
                 </div>
             </div>
+		
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell weui-cell_switch">
                     <div class="weui-cell__bd">A1</div>
                     <div class="weui-cell__ft">
-                        <input class="weui-switch" type="checkbox"/>
+                        <input class="weui-switch" type="checkbox" id="A1" value="Off" onclick='sendState(this)'/>
                     </div>
                 </div>
             </div>
@@ -95,7 +78,7 @@
                 <div class="weui-cell weui-cell_switch">
                     <div class="weui-cell__bd">A2</div>
                     <div class="weui-cell__ft">
-                        <input class="weui-switch" type="checkbox"/>
+                        <input class="weui-switch" type="checkbox" id="A2" value="Off" onclick='sendState(this)'/>
                     </div>
                 </div>
             </div>
@@ -103,42 +86,41 @@
                 <div class="weui-cell weui-cell_switch">
                     <div class="weui-cell__bd">S0</div>
                     <div class="weui-cell__ft">
-                        <input class="weui-switch" type="checkbox"/>
+                        <input class="weui-switch" type="checkbox" id="S0" value="Off" onclick='sendState(this)'/>
                     </div>
                 </div>
             </div>
             
-            <div class="weui-cells__title">MA</div>
-            <div class="page__bd page__bd_spacing">
-				<br>
-					<div class="weui-slider-box">
-						<div class="weui-slider">
-							<div id="sliderInner" class="weui-slider__inner">
-								<div id="sliderTrack" style="width: 50%;" class="weui-slider__track"></div>
-								<div id="sliderHandler" style="left: 50%;" class="weui-slider__handler"></div>
-							</div>
-						</div>
-						<div id="sliderValue" class="weui-slider-box__value">50</div>
-					</div>	
-			</div>
+            <!-- <div class="weui-cells__title">MA</div> -->
+            <!-- <div class="page__bd page__bd_spacing"> -->
+				<!-- <br> -->
+					<!-- <div class="weui-slider-box"> -->
+						<!-- <div class="weui-slider"> -->
+							<!-- <div id="sliderInner" class="weui-slider__inner"> -->
+								<!-- <div id="sliderTrack" style="width: 50%;" class="weui-slider__track"></div> -->
+								<!-- <div id="sliderHandler" style="left: 50%;" class="weui-slider__handler"></div> -->
+							<!-- </div> -->
+						<!-- </div> -->
+						<!-- <div id="sliderValue" class="weui-slider-box__value">50</div> -->
+					<!-- </div>	 -->
+			<!-- </div> -->
             
-            <div class="weui-cells__title">MB</div>
-            <div class="page__bd page__bd_spacing">
-				<br>
-					<div class="weui-slider-box">
-						<div class="weui-slider">
-							<div id="sliderInner2" class="weui-slider__inner">
-								<div id="sliderTrack2" style="width: 50%;" class="weui-slider__track"></div>
-								<div id="sliderHandler2" style="left: 50%;" class="weui-slider__handler"></div>
-							</div>
-						</div>
-						<div id="sliderValue2" class="weui-slider-box__value">50</div>
-					</div>	
-			</div>
+            <!-- <div class="weui-cells__title">MB</div> -->
+            <!-- <div class="page__bd page__bd_spacing"> -->
+				<!-- <br> -->
+					<!-- <div class="weui-slider-box"> -->
+						<!-- <div class="weui-slider"> -->
+							<!-- <div id="sliderInner2" class="weui-slider__inner"> -->
+								<!-- <div id="sliderTrack2" style="width: 50%;" class="weui-slider__track"></div> -->
+								<!-- <div id="sliderHandler2" style="left: 50%;" class="weui-slider__handler"></div> -->
+							<!-- </div> -->
+						<!-- </div> -->
+						<!-- <div id="sliderValue2" class="weui-slider-box__value">50</div> -->
+					<!-- </div>	 -->
+			<!-- </div> -->
 				
 			<br>
-			
-	    <div class="weui-flex">
+			<div class="weui-flex">
                 <div class="weui-flex__item">
                     <a href="javascript:;" id="myBtn1" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">1</a>
                 </div>
@@ -173,7 +155,7 @@
                     <a href="javascript:;" id="myBtn0" onclick='send(this)' class="weui-btn weui-btn_mini weui-btn_default">0</a>
                 </div>
             </div>
-			<br>
+			<br>	
 			<div class="weui-cell weui-cell_vcode">
 				<div class="weui-cell__hd">
 					<label class="weui-label">文本</label>
@@ -190,92 +172,139 @@
         
     </body>
 	
-	<script src="https://weui.io/zepto.min.js"></script>
+    <!-- <script src="https://weui.io/zepto.min.js"></script> -->
 	<script>
-	$(function(){
-					var $sliderTrack = $('#sliderTrack'),
-						$sliderHandler = $('#sliderHandler'),
-						$sliderValue = $('#sliderValue');
+	
+   // window.setInterval(showalert, 3000); 
+    function showalert() 
+    { 
+        var Wtemp=document.getElementById("lignt");
+        Wtemp.innerHTML ="1";
+    //alert("aaaaa"); 
+    } 
 
-					var totalLen = $('#sliderInner').width(),
-						startLeft = 0,
-						startX = 0;
-
-					$sliderHandler
-						.on('touchstart', function (e) {
-							startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100;
-							startX = e.changedTouches[0].clientX;
-						})
-						.on('touchmove', function(e){
-							var dist = startLeft + e.changedTouches[0].clientX - startX,
-								percent;
-							dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist;
-							percent =  parseInt(dist / totalLen * 100);
-							$sliderTrack.css('width', percent + '%');
-							$sliderHandler.css('left', percent + '%');
-							$sliderValue.text(percent);
-
-							e.preventDefault();
-						})
-					;
-				});
-                
-    $(function(){
-					var $sliderTrack = $('#sliderTrack2'),
-						$sliderHandler = $('#sliderHandler2'),
-						$sliderValue = $('#sliderValue2');
-
-					var totalLen = $('#sliderInner2').width(),
-						startLeft = 0,
-						startX = 0;
-
-					$sliderHandler
-						.on('touchstart', function (e) {
-							startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100;
-							startX = e.changedTouches[0].clientX;
-						})
-						.on('touchmove', function(e){
-							var dist = startLeft + e.changedTouches[0].clientX - startX,
-								percent;
-							dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist;
-							percent =  parseInt(dist / totalLen * 100);
-							$sliderTrack.css('width', percent + '%');
-							$sliderHandler.css('left', percent + '%');
-							$sliderValue.text(percent);
-
-							e.preventDefault();
-						})
-					;
-				});	
-		
-	function send(self)
-	{
-		var MAC=document.getElementById("inputDefault");
-		var userdata=document.getElementById("inputdata");
-		var uservale = userdata.value;
-		var xmlhttp;
-		var target = MAC.value;
-		//MAC.value = target;
-		var data=document.getElementById(self.id).innerHTML;
-	    //var getStatusBack;	
-
-		var url = "http://haohaodada.com/iot/send_mqtt.php";  
-
-		xmlhttp=new XMLHttpRequest();
-
-		xmlhttp.open("POST",url,true);
-		//xmlhttp.onreadystatechange = getStatusBack;  
-		xmlhttp.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded"); 
-        
-        if (data == "发送")
+	function sendState(self)
+    {
+        var switchBtn=document.getElementById(self.id);
+                                
+        if(switchBtn.value == "Off")
         {
-	    	xmlhttp.send("target="+target+"&message="+userdata.value); 
+            switchBtn.value = "On";
         }
         else
         {
-            xmlhttp.send("target="+target+"&message="+data); 
+            switchBtn.value = "Off";
         }
-		//xmlhttp.send("target=EC:FA:BC:0D:F3:DD&message=left");  
-	}	
+                                
+        var msg = switchBtn.id + "=" + switchBtn.value;
+                                
+        postData(msg);
+    };
+   
+    <!-- $(function(){ -->
+					<!-- var $sliderTrack = $('#sliderTrack'), -->
+						<!-- $sliderHandler = $('#sliderHandler'), -->
+						<!-- $sliderValue = $('#sliderValue'); -->
+
+					<!-- var totalLen = $('#sliderInner').width(), -->
+						<!-- startLeft = 0, -->
+						<!-- startX = 0; -->
+
+					<!-- $sliderHandler -->
+						<!-- .on('touchstart', function (e) { -->
+							<!-- startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100; -->
+							<!-- startX = e.changedTouches[0].clientX; -->
+						<!-- }) -->
+						<!-- .on('touchmove', function(e){ -->
+							<!-- var dist = startLeft + e.changedTouches[0].clientX - startX, -->
+								<!-- percent; -->
+							<!-- dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist; -->
+							<!-- percent =  parseInt(dist / totalLen * 100); -->
+							<!-- $sliderTrack.css('width', percent + '%'); -->
+							<!-- $sliderHandler.css('left', percent + '%'); -->
+							<!-- $sliderValue.text(percent); -->
+
+							<!-- e.preventDefault(); -->
+						<!-- }) -->
+					<!-- ; -->
+				<!-- }); -->
+                
+    <!-- $(function(){ -->
+					<!-- var $sliderTrack = $('#sliderTrack2'), -->
+						<!-- $sliderHandler = $('#sliderHandler2'), -->
+						<!-- $sliderValue = $('#sliderValue2'); -->
+
+					<!-- var totalLen = $('#sliderInner2').width(), -->
+						<!-- startLeft = 0, -->
+						<!-- startX = 0; -->
+
+					<!-- $sliderHandler -->
+						<!-- .on('touchstart', function (e) { -->
+							<!-- startLeft = parseInt($sliderHandler.css('left')) * totalLen / 100; -->
+							<!-- startX = e.changedTouches[0].clientX; -->
+						<!-- }) -->
+						<!-- .on('touchmove', function(e){ -->
+							<!-- var dist = startLeft + e.changedTouches[0].clientX - startX, -->
+								<!-- percent; -->
+							<!-- dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist; -->
+							<!-- percent =  parseInt(dist / totalLen * 100); -->
+							<!-- $sliderTrack.css('width', percent + '%'); -->
+							<!-- $sliderHandler.css('left', percent + '%'); -->
+							<!-- $sliderValue.text(percent); -->
+
+							<!-- e.preventDefault(); -->
+						<!-- }) -->
+					<!-- ; -->
+				<!-- }); -->
+                
+	function send(self)
+	{
+		var data=document.getElementById(self.id).innerHTML;
+
+        if (data == "发送")
+        {   
+            var userdata=document.getElementById("inputdata");
+            postData(userdata.value);
+        }
+        else
+        {
+           postData("Button="+data);
+        }
+	}
+
+    function postData(data)
+    {
+        var MAC=document.getElementById("inputDefault");
+        var target = MAC.value;
+        if(target == "")
+        {
+            alert("请输入MAC地址");
+        }
+        var url = "http://haohaodada.com/iot/send_mqtt.php";  
+      // var url = "http://haohaodada.com/Arduino/sensorquery.php";  
+		xmlhttp=new XMLHttpRequest();
+        
+      //  xmlhttp.onreadystatechange = zswFun;  
+        
+		//xmlhttp.open("POST",url,true);
+        xmlhttp.open("POST",url,true);
+		//xmlhttp.onreadystatechange = getStatusBack;  
+		//xmlhttp.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded");
+        xmlhttp.send("target="+target+"&message="+data); 
+        xmlhttp.send("mac="+target+"&que=TEMP"); 
+        //EC:FA:BC:0D:F3:DD
+    }
+    
+    function zswFun(){      
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){      
+        var b = xmlhttp.responseText;      
+        if(b == "true"){      
+            alert("登录成功！");      
+        }else{      
+            alert("登录失败！");      
+        }             
+    }      
+}  
+    
 	</script>  
 </html>

@@ -289,7 +289,7 @@
 		//xmlhttp.open("POST",url,true);
         xmlhttp.open("POST",url,true);
 		//xmlhttp.onreadystatechange = getStatusBack;  
-		//xmlhttp.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded");
+	xmlhttp.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded");
         xmlhttp.send("target="+target+"&message="+data); 
         xmlhttp.send("mac="+target+"&que=TEMP"); 
         //EC:FA:BC:0D:F3:DD
